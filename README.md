@@ -6,7 +6,7 @@
   1. **It gives you flexibility 📏.** With just a few commands, you can do a lot.
   2. **It is much faster than a graphical interface 💻.**
   3. **It is your only option if there is no interface 😆,** such as for configuring a remote server.
-  4. **You can invoke daemons 👿.** You need to be careful with commands.
+  4. **You can invoke daemons 👿.** You need to be careful with commands, such as **remove.**
 
 - Specifically, the terminal is a very simple graphical interface that simulates a command line:
   1. **Terminal:** Window that shows the prompt.
@@ -16,7 +16,7 @@
 
 - A command is a program that can be executed from the terminal.
 
-![Let's Get the Party Started](https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExY2k5Y2JtMWVyMjk5dnVvZWR3d2V4NTh3OTZtdXI3N3E3cXN2Y2NsNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/fsoCk5kgOcYMM/giphy-downsized-large.gif)
+![Let's Get the Party Started](https://shorturl.at/vkqON)
 
 ## Getting to know the file system through the terminal
 
@@ -30,7 +30,7 @@ Docker  dev   init   lib64       media             mnt   proyectoPersonal  sbin 
 bin     etc   lib    libx32      miniconda.html    opt   root              srv   usr  wsleaooND
 boot    home  lib32  lost+found  miniconda.html.1  proc  run               sys   var  wsllHHkkc
 ```
-The folder **'/'** after mi username (andrewbavuels@the-Legionnaire:), is called the **root directory.** It is the top-most directory in a Unix or Linux file system hierarchy and contains all other files and directories on the system.
+The folder **'/'** after my username (andrewbavuels@the-Legionnaire:), is called the **root directory.** It is the top-most directory in a Unix or Linux file system hierarchy and contains all other files and directories on the system.
 ```sh
 cd # Changes the current directory.
 
