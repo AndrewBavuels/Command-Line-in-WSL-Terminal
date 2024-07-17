@@ -173,3 +173,16 @@ rm # WARNING!!!! Removes files or directories (even Hard drives)
 
 andrewbavuels@the-Legionnaire:~/command_line$ rm README.md example_1 example_2.txt 'Recording 2024-07-17 122242.mp4'
 ```
+```sh
+andrewbavuels@the-Legionnaire:~/command_line/README$ ls
+README.md
+andrewbavuels@the-Legionnaire:~/command_line/README$ git add .
+andrewbavuels@the-Legionnaire:~/command_line/README$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   README.md
+```
