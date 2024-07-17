@@ -5,6 +5,7 @@
 1. [What is the terminal?](#1-what-is-the-terminal)
 2. [Getting to know the file system through the terminal](#2-getting-to-know-the-file-system-through-the-terminal)
 3. [Manipulating files and folders](#3-manipulating-files-and-folders)
+4. [Exploring the content of our files](#4-exploring-the-content-of-our-files)
 
 ---
 
@@ -202,3 +203,30 @@ andrewbavuels@the-Legionnaire:~/command_line/README$ cd ..
 ```sh
 andrewbavuels@the-Legionnaire:~/command_line$ mv README Images
 ```
+## 4. Exploring the content of our files
+
+```sh
+head -n # Displays the first n lines of a file.
+
+andrewbavuels@the-Legionnaire:~/command_line$ head README.md -n 6
+# Command Line in WSL Terminal
+
+### Table of Contents
+
+1. [What is the terminal?](#1-what-is-the-terminal)
+2. [Getting to know the file system through the terminal](#2-getting-to-know-the-file-system-through-the-terminal)
+```
+```sh
+tail -n # Displays the last n lines of a file.
+```
+```sh
+less # Useful for viewing large files without loading the entire file into memory
+
+Once inside less, press '/' to  find some word that will ake you directly to that part of the file.
+```
+```sh
+xdg-open # Opens files and URLs without specify the exact application.
+
+andrewbavuels@the-Legionnaire:~/command_line$ xdg-open Images
+```
+
