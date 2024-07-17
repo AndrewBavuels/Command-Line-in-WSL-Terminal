@@ -1,5 +1,13 @@
 # Command Line in WSL Terminal
 
+### Table of Contents
+
+1. [What is the terminal?](#1-what-is-the-terminal)
+2. [Getting to know the file system through the terminal](#2-getting-to-know-the-file-system-through-the-terminal)
+3. [Manipulating files and folders](#3-manipulating-files-and-folders)
+
+---
+
 ## 1. What is the terminal?
 
 - The terminal is an indispensable tool that anyone in technology must know 👀. It is important because:
@@ -19,7 +27,7 @@
 ![outFile](https://github.com/user-attachments/assets/bdb5f8a1-35fe-40d4-bb0f-9c9e562ede01)
 
 
-## 2. etting to know the file system through the terminal
+## 2. Getting to know the file system through the terminal
 
 Below, I am listing the contents of the **root directory,** showing various system directories and files, with one of the command series that I am going to show you as follows:
 
