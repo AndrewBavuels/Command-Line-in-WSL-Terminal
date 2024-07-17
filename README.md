@@ -16,7 +16,7 @@
 
 - A command is a program that can be executed from the terminal.
 
-![Let's Get the Party Started](https://media.giphy.com/media/fsoCk5kgOcYMM/giphy.gif)
+![GIF](https://media.giphy.com/media/fsoCk5kgOcYMM/giphy.gif)
 
 ## Getting to know the file system through the terminal
 
