@@ -128,4 +128,3 @@ eda
 **You will see an example from:** [_Exploratory Data Analysis (EDA) Visualization with Python_](https://github.com/AndrewBavuels/Car-Fuel-Consumption-Part-I-Analysis-before-Predictions)
 
 ## Manipulating files and folders
-
