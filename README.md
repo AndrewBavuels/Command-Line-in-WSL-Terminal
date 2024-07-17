@@ -1,6 +1,6 @@
 # Command Line in WSL Terminal
 
-## What is the terminal?
+## 1. What is the terminal?
 
 - The terminal is an indispensable tool that anyone in technology must know 👀. It is important because:
   1. **It gives you flexibility 📏.** With just a few commands, you can do a lot.
@@ -19,7 +19,7 @@
 ![outFile](https://github.com/user-attachments/assets/bdb5f8a1-35fe-40d4-bb0f-9c9e562ede01)
 
 
-## Getting to know the file system through the terminal
+## 2. etting to know the file system through the terminal
 
 Below, I am listing the contents of the **root directory,** showing various system directories and files, with one of the command series that I am going to show you as follows:
 
@@ -126,7 +126,7 @@ eda
 ```
 **You will see an example from:** [_Exploratory Data Analysis (EDA) Visualization with Python_](https://github.com/AndrewBavuels/Car-Fuel-Consumption-Part-I-Analysis-before-Predictions)
 
-## Manipulating files and folders
+## 3. Manipulating files and folders
 
 I want to take advantage of this point to create an exclusive folder for the readme...
 
@@ -175,6 +175,9 @@ andrewbavuels@the-Legionnaire:~/command_line$ rm README.md example_1 example_2.t
 ```
 ```sh
 rm -i # Prevent accidental deletion of important files with a confirmation prompt.
+
+andrewbavuels@the-Legionnaire:~/command_line$ rm -i LICENSE
+rm: remove regular file 'LICENSE'?
 ```
 _At this point, I noticed I made a mistake updating my Github repo and it went like this:_
 
