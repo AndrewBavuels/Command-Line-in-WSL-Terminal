@@ -188,6 +188,8 @@ Changes to be committed:
 ```
 _At this point, I noticed I made a mistake updating my Github repo and it went like this:_
 
+![Troubleshoot](https://github.com/user-attachments/assets/7497e1ea-231b-46ee-9bdd-757c74832013)
+
 (insert image here)
 
 - Moving README.md file to previous folder with **mv README.md ..**
