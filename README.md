@@ -1,5 +1,7 @@
 # Command Line in WSL Terminal
 
+## (In working progress..)
+
 ### Table of Contents
 
 1. [What is the terminal?](#1-what-is-the-terminal)
@@ -230,3 +232,53 @@ xdg-open # Opens files and URLs without specify the exact application.
 andrewbavuels@the-Legionnaire:~/command_line$ xdg-open Images
 ```
 
+## 5. Wildcards
+
+`ls *.<ext>`
+```sh
+andrewbavuels@the-Legionnaire:/mnt/c/Users/andre/Music/Rock$ ls *.mp3
+ 01-the_magic_numbers-this_is_a_song179.mp3   'Queen of the stoneage - No One Knows.mp3'
+'03 stand tall.mp3'                           'Queens Of The Stone Age - No One Knows.mp3'
+```
+
+`ls <word>*`
+```sh
+andrewbavuels@the-Legionnaire:/mnt/c/Users/andre/Music/Rock$ ls Queen*
+'Queen of the stoneage - No One Knows.mp3'    'Queens of the Stone Age - Go With The Flow.mp3'
+'Queens Of The Stone Age - No One Knows.mp3'  'Queens of the Stone Age - Monsters In The Parasol.mp3'
+
+Queen:
+'Bohemian Rhapsody.mp3'   Desktop.ini  'Queen - Bicycle Race.mp3'   Thumbs.db
+andrewbavuels@the-Legionnaire:/mnt/c/Users/andre/Music/Rock$
+```
+
+`ls <word>?`
+```sh
+andrewbavuels@the-Legionnaire:/mnt/c/Users/andre/Music/Rock$ ls album*
+album1  album666
+
+andrewbavuels@the-Legionnaire:/mnt/c/Users/andre/Music/Rock$ ls album?
+album1
+
+andrewbavuels@the-Legionnaire:/mnt/c/Users/andre/Music/Rock$ ls album???
+album666
+```
+`ls -d [[:upper:]]*`
+```sh
+andrewbavuels@the-Legionnaire:~$ ls -d [[:upper:]]*
+Anaconda3-2024.06-1-Linux-x86_64.sh  Anaconda3-2024.06-1-Linux-x86_64.sh:Zone.Identifier
+```
+
+`ls -d [[:lower:]]*`
+```sh
+andrewbavuels@the-Legionnaire:~$ ls -d [[:lower:]]*
+amdgpu-install_5.5.50503-1_all.deb  command_line  go1.22.4.linux-amd64.tar.gz  python
+anaconda.sh                         databases     listado.txt                  react-app
+anaconda3                           eda           misarchivos.txt              web_project
+anaconda_deletion                   git_github    mitexto.txt                  wget-log
+```
+`ls [cRC]*`
+```sh
+andrewbavuels@the-Legionnaire:~/command_line$ ls [cRC]*
+Content.docx  README.md  command-line-cheat-sheet.pdf  command-line-cheat-sheet.pdf:Zone.Identifier
+```
