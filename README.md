@@ -342,3 +342,31 @@ Content.docx  README.md  command-line-cheat-sheet.pdf  command-line-cheat-sheet.
 | `[]`                  | Search by Specific Characters       |
 | `[<digit>-<digit>]`   | Search by Digits                    |
 
+## 6. Shell Redirections
+
+```sh
+andrewbavuels@the-Legionnaire:/mnt/c/Users/andre/Pictures/0. CyberpunkNomad (Viajes Inter)$ ls -lh
+total 0
+drwxrwxrwx 1 andrewbavuels andrewbavuels 4.0K Sep 11  2023 FRANCE
+drwxrwxrwx 1 andrewbavuels andrewbavuels 4.0K Nov  8  2023 GERMANY
+drwxrwxrwx 1 andrewbavuels andrewbavuels 4.0K Sep 15  2023 ITALY
+drwxrwxrwx 1 andrewbavuels andrewbavuels 4.0K Nov  8  2023 SPAIN
+drwxrwxrwx 1 andrewbavuels andrewbavuels 4.0K Mar 22 13:25 USA
+```
+- `ls USA > my_pics.txt`
+
+```sh
+andrewbavuels@the-Legionnaire:/mnt/c/Users/andre/Pictures/0. CyberpunkNomad (Viajes Inter)$ ls USA > my_pics.txt
+```
+
+- `less my_pics.txt`
+
+```sh
+andrewbavuels@the-Legionnaire:/mnt/c/Users/andre/Pictures/0. CyberpunkNomad (Viajes Inter)$ less my_pics.txt
+
+Boston
+California
+Florida
+New York
+Washington
+```
