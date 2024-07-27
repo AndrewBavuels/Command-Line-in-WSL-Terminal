@@ -370,3 +370,126 @@ Florida
 New York
 Washington
 ```
+
+- **`ls Downloads >> my_files.txt:`** This command uses shell redirection to append the output of a command to a file. Here’s a breakdown:
+
+  - **`ls Downloads:`** This part of the command lists the contents of the `Downloads` directory.
+
+  - **`>>:`** This is the redirection operator used to append the output to a file. If the file specified does not exist, it will be created. If it does exist, the new output will be added to the end of the file without overwriting its existing content.
+
+  - **`my_files.txt:`** This is the file where the output of the `ls Downloads` command will be appended.
+
+```sh
+andrewbavuels@the-Legionnaire:/mnt/c/Users/andre$ ls Pictures > my_files.txt
+andrewbavuels@the-Legionnaire:/mnt/c/Users/andre$ less my_files.txt
+
+# Appending files in my_files.txt
+
+andrewbavuels@the-Legionnaire:/mnt/c/Users/andre$ ls Downloads >> my_files.txt
+andrewbavuels@the-Legionnaire:/mnt/c/Users/andre$ less my_files.txt
+andrewbavuels@the-Legionnaire:/mnt/c/Users/andre$
+
+# Output
+
+0. CyberpunkNomad (Viajes Inter)
+1. BARRANQUILLA
+2. BOGOTA
+3. VIVE COLOMBIA (viajesillos)
+4. SPECIAL GUESTS
+AuxVID
+Camera Roll
+Screenshots
+desktop.ini
+misarchivos.txt
+01 escalares vectores matrices tensores.ipynb
+Diseño sin título.zip
+Docker Desktop Installer.exe
+VSCodeUserSetup-x64-1.91.1.exe
+dataspell-2024.1.3.exe
+desktop.ini
+dxwebsetup (1).exe
+dxwebsetup (2).exe
+dxwebsetup.exe
+github-vector-logo-seeklogo.zip
+heart.csv
+master-web-server.zip
+mongosh-2.2.12-win32-x64.zip
+my_files.txt (END)
+```
+### Explanation of Shell Commands and Output
+
+- Attempts to list `76wq3orfih`. The file or directory does not exist.
+
+```sh
+andrewbavuels@the-Legionnaire:~/Downloads$ ls 76wq3orfih
+ls: cannot access '76wq3orfih': No such file or directory
+
+- Tries to list `76wq3orfih` and redirects output to error.txt, but no output is captured.
+
+```sh
+andrewbavuels@the-Legionnaire:~/Downloads$ ls 76wq3orfih > error.txt
+```
+- Lists contents of `Downloads`, showing `error.txt`
+
+```sh
+andrewbavuels@the-Legionnaire:~/Downloads$ ls
+'code_1.91.1-1720564633_amd64 (1).deb:Zone.Identifier'   error.txt
+```
+- Displays the first lines of `error.txt`, which is empty.
+
+```sh
+andrewbavuels@the-Legionnaire:~/Downloads$ head error.txt
+```
+- Redirects error output of `ls 76wq3orfih` to `error.txt`
+
+```sh
+andrewbavuels@the-Legionnaire:~/Downloads$ ls 76wq3orfih 2> error.txt
+```
+
+- Shows the error message stored in `error.txt`
+
+```sh
+andrewbavuels@the-Legionnaire:~/Downloads$ head error.txt
+ls: cannot access '76wq3orfih': No such file or directory
+```
+
+- Redirects both output and error of `ls 8270p98` to `output.txt`
+
+```sh
+andrewbavuels@the-Legionnaire:~/Downloads$ ls 8270p98 > output.txt 2>&1
+```
+
+- Displays contents of `output.txt`, showing the error message
+
+```sh
+andrewbavuels@the-Legionnaire:~/Downloads$ head output.txt
+ls: cannot access '8270p98': No such file or directory
+```
+
+- Appends both output and error of `ls command_line/` to `output.txt`
+
+```sh
+andrewbavuels@the-Legionnaire:~/Downloads$ ls command_line/ >> output.txt 2>&1
+```
+
+- Opens `output.txt` for viewing in the less pager.
+
+```sh
+andrewbavuels@the-Legionnaire:~/Downloads$ less output.txt
+```
+
+### Redirection Operators
+
+| Operator | Function                                                                                      |
+| -------- | --------------------------------------------------------------------------------------------- |
+| `>`      | Redirects the output. By default, it redirects Standard Output (stdout).                     |
+| `>>`     | Appends the output to the end of the specified file, preserving existing content.            |
+| `2>`     | Redirects file descriptor 2 (Standard Error, stderr) to the specified file.                   |
+| `2>&1`   | Redirects file descriptor 2 (stderr) to the same location as file descriptor 1 (stdout).       |
+| `1>`     | Redirects file descriptor 1 (Standard Output, stdout) to the specified file.                  |
+| `1>>`    | Appends Standard Output (stdout) to the end of the specified file.                            |
+| `<`      | Redirects input from a file instead of from the keyboard.                                    |
+| `<<`     | Reads input from the keyboard until a specific delimiter is encountered.                     |
+| `<<<`    | Redirects a string to the input of a command.                                                |
+| `|`      | Pipes the output of one command as input to another command.                                  |
+| `|&`     | Pipes both Standard Output (stdout) and Standard Error (stderr) to another command.           |
