@@ -8,6 +8,7 @@
 2. [Getting to know the file system through the terminal](#2-getting-to-know-the-file-system-through-the-terminal)
 3. [Manipulating files and folders](#3-manipulating-files-and-folders)
 4. [Exploring the content of our files](#4-exploring-the-content-of-our-files)
+5. [Wildcards](#5-Wildcards)
 
 ---
 
@@ -34,28 +35,28 @@
 
 Below, I am listing the contents of the **root directory,** showing various system directories and files, with one of the command series that I am going to show you as follows:
 
-```sh
-ls # Lists the contents of a directory.
+- `ls:` Lists the contents of a directory.
 
+```sh
 andrewbavuels@the-Legionnaire:/$ ls
 Docker  dev   init   lib64       media             mnt   proyectoPersonal  sbin  tmp  wslcdeaCh  wsloOFoIg
 bin     etc   lib    libx32      miniconda.html    opt   root              srv   usr  wsleaooND
 boot    home  lib32  lost+found  miniconda.html.1  proc  run               sys   var  wsllHHkkc
 ```
 The folder **'/'** after my username (andrewbavuels@the-Legionnaire:), is called the **root directory.** It is the top-most directory in a Unix or Linux file system hierarchy and contains all other files and directories on the system.
-```sh
-cd # Changes the current directory.
 
+- `cd:` Changes the current directory.
+
+```sh
 andrewbavuels@the-Legionnaire:~/python$ cd pentaho/
 andrewbavuels@the-Legionnaire:~/python/pentaho$
 ```
-```sh
-ls -l # Lists the contents of a directory in long format, showing detailed information about each file and directory, such as permissions, owner, size, and modification date.
-```
-```sh
 
-ls -h # Lists the contents of a directory with file sizes in human-readable format, such as KB, MB, or GB.
+- `ls -l:` Lists the contents of a directory in long format, showing detailed information about each file and directory, such as permissions, owner, size, and modification date.
 
+- `ls -h:` Lists the contents of a directory with file sizes in human-readable format, such as KB, MB, or GB.
+
+```sh
 andrewbavuels@the-Legionnaire:~/python/pentaho$ ls -h
 hs_codes.csv
 hs_codes_67d0ca02-86f0-4829-8568-389ab67a38e5.csv:Zone.Identifier
@@ -63,41 +64,46 @@ pentaho-etl
 template_etl.ipynb
 template_etl_oec_9d24a368-c162-49d7-a1e7-d05a278cd880.ipynb:Zone.Identifier
 ```
-```sh
-clear (or crtl+l) # Clears the terminal screen, removing all previous commands and outputs from view.
 
+- `clear (or crtl+l):` Clears the terminal screen, removing all previous commands and outputs from view.
+
+```sh
 andrewbavuels@the-Legionnaire:/$ clear
 ```
-```sh
-cd .. # Changes the current directory to the parent directory.
 
+- `cd .. :` Changes the current directory to the parent directory.
+
+```sh
 andrewbavuels@the-Legionnaire:~/python/pentaho$ cd ..
 andrewbavuels@the-Legionnaire:~/python$
 ```
-```sh
-cd ~ # Changes the current directory to your home directory.
 
+- `cd ~ :` Changes the current directory to your home directory.
+
+```sh
 andrewbavuels@the-Legionnaire:~$ cd ~
 andrewbavuels@the-Legionnaire:~$
 ```
-```sh
-pwd # Prints the current working directory.
 
+- `pwd:` Prints the current working directory.
+
+```sh
 andrewbavuels@the-Legionnaire:~$ pwd
 /home/andrewbavuels
 ```
+
+- `cd . :` # Refers to the current directory, although if you are as:
+
+- `cd ./['furtherfolder']:` This command changes the current directory to a subdirectory within the relative path
+
 ```sh
-
-cd . # Refers to the current directory, although if you are as:
-
-cd ./['furtherfolder'] # This command changes the current directory to a subdirectory within the relative path
-
 andrewbavuels@the-Legionnaire:~$ cd ./command_line
 andrewbavuels@the-Legionnaire:~/command_line$
 ```
-```sh 
-ls -la #Lists all contents of a directory in long format, including hidden files (files starting with a dot .).
 
+- `ls -la:` Lists all contents of a directory in long format, including hidden files (files starting with a dot .).
+
+```sh
 andrewbavuels@the-Legionnaire:~/command_line$ ls -la
 total 1784
 drwxr-xr-x  2 andrewbavuels andrewbavuels    4096 Jul 17 09:06  .
@@ -109,11 +115,12 @@ drwxr-xr-x 23 andrewbavuels andrewbavuels    4096 Jul 17 07:45  ..
 -rw-r--r--  1 andrewbavuels andrewbavuels 1664983 Jul 17 07:50  slides.pdf
 -rw-r--r--  1 andrewbavuels andrewbavuels     162 Jul 17 09:06 '~$ontent.docx'
 ```
+
 One of the most important commands for me, especially when uploading my projects to GitHub in a README.md file, is outlining the project structure.
 
-```sh 
-tree # it's a useful tool for visualizing directory structures.
+- `tree:` it's a useful tool for visualizing directory structures.
 
+```sh 
 andrewbavuels@the-Legionnaire:~$ tree eda
 eda
 ├── data
@@ -141,30 +148,32 @@ eda
 
 I want to take advantage of this point to create an exclusive folder for the readme...
 
-```sh
-mkdir # Creates a new directory.
+- `mkdir:` Creates a new directory.
 
+```sh
 andrewbavuels@the-Legionnaire:~/command_line$ mkdir README
 andrewbavuels@the-Legionnaire:~/command_line$
 ```
+
 **Suggestion:** For easy manipulation, avoid spaces when naming the file/folder. E.G. Instead of "READ ME", name it like README (no spaces).
 
-```sh
-touch # Creates an empty file or updates the timestamp of an existing file.
+- `touch:` Creates an empty file or updates the timestamp of an existing file.
 
+```sh
 andrewbavuels@the-Legionnaire:~/command_line$ touch example.txt
 andrewbavuels@the-Legionnaire:~/command_line$ ls
  Content.docx               README.md                                      example.txt
 ```
 
-```sh
-cp file1 file2 # Copies files or directories to file2 or directory2
+- `cp file1 file2:` Copies files or directories to file2 or directory2
 
+```sh
 andrewbavuels@the-Legionnaire:~/command_line$ cp example.txt example_2.txt
 ```
-```sh
-mv # Moves or renames files or directories.
 
+- `mv:` Moves or renames files or directories.
+
+```sh
 # Renaming a file
 
 andrewbavuels@the-Legionnaire:~/command_line$ mv example.txt example_1
@@ -173,43 +182,50 @@ andrewbavuels@the-Legionnaire:~/command_line$ ls
 
  # Moving file to a folder
 
- andrewbavuels@the-Legionnaire:~/command_line$ mv README.md README
+andrewbavuels@the-Legionnaire:~/command_line$ mv README.md README
 andrewbavuels@the-Legionnaire:~/command_line$ cd README/
 andrewbavuels@the-Legionnaire:~/command_line/README$ ls
 README.md
 ```
 
-```sh
-rm # WARNING!!!! Removes files or directories (even Hard drives)
+- `rm:` WARNING!!!! Removes files or directories (even Hard Drives)
 
+```sh
 andrewbavuels@the-Legionnaire:~/command_line$ rm README.md example_1 example_2.txt 'Recording 2024-07-17 122242.mp4'
 ```
-```sh
-rm -i # Prevent accidental deletion of important files with a confirmation prompt.
 
+- `rm -i:` Prevent accidental deletion of important files with a confirmation prompt.
+
+```sh
 andrewbavuels@the-Legionnaire:~/command_line$ rm -i LICENSE
 rm: remove regular file 'LICENSE'?
 ```
+
 _At this point, I noticed I made a mistake updating my Github repo and it went like this:_
+
 
 ![Troubleshoot](https://github.com/user-attachments/assets/7497e1ea-231b-46ee-9bdd-757c74832013)
 
 - Moving README.md file to previous folder with **mv README.md ..**
+
 ```sh
 andrewbavuels@the-Legionnaire:~/command_line/README$ ls
 README.md
 andrewbavuels@the-Legionnaire:~/command_line/README$ mv README.md ..
 andrewbavuels@the-Legionnaire:~/command_line/README$ cd ..
 ```
+
 - Renaming README folder as Images with **mv README Images**
+
 ```sh
 andrewbavuels@the-Legionnaire:~/command_line$ mv README Images
 ```
+
 ## 4. Exploring the content of our files
 
-```sh
-head -n # Displays the first n lines of a file.
+- `head -n:` Displays the first n lines of a file.
 
+```sh
 andrewbavuels@the-Legionnaire:~/command_line$ head README.md -n 6
 # Command Line in WSL Terminal
 
@@ -218,30 +234,36 @@ andrewbavuels@the-Legionnaire:~/command_line$ head README.md -n 6
 1. [What is the terminal?](#1-what-is-the-terminal)
 2. [Getting to know the file system through the terminal](#2-getting-to-know-the-file-system-through-the-terminal)
 ```
-```sh
-tail -n # Displays the last n lines of a file.
-```
-```sh
-less # Useful for viewing large files without loading the entire file into memory
+- `tail -n:` Displays the last n lines of a file.
 
-Once inside less, press '/' to  find some word that will ake you directly to that part of the file.
-```
-```sh
-xdg-open # Opens files and URLs without specify the exact application.
+- `less:` Useful for viewing large files without loading the entire file into memory
+**Note:** Once inside less, press '/' to  find some word that will ake you directly to that part of the file.
 
+- `xdg-open:` Opens files and URLs without specify the exact application.
+
+```sh
 andrewbavuels@the-Legionnaire:~/command_line$ xdg-open Images
 ```
-
 ## 5. Wildcards
 
-`ls *.<ext>`
+Wildcards are special characters that allow you to find patterns or perform more advanced searches. They apply to files and directories. Wildcards are useful for file or directory segmentation, and they can be used with any command that manipulates files, such as `mv`, `cp`, and `rm`.
+
+### Types of Wildcards
+
+#### Search Everything (*)
+
+The asterisk helps you search for all information within a folder, but you can limit its use. For example, if you want to find files with a ".png" extension, you would write:
+
+- `ls *.<ext> :` Lists files with a specific extension.
+
 ```sh
 andrewbavuels@the-Legionnaire:/mnt/c/Users/andre/Music/Rock$ ls *.mp3
  01-the_magic_numbers-this_is_a_song179.mp3   'Queen of the stoneage - No One Knows.mp3'
 '03 stand tall.mp3'                           'Queens Of The Stone Age - No One Knows.mp3'
 ```
 
-`ls <word>*`
+- `ls <word>* :` Lists files and directories that start with a specific word.
+
 ```sh
 andrewbavuels@the-Legionnaire:/mnt/c/Users/andre/Music/Rock$ ls Queen*
 'Queen of the stoneage - No One Knows.mp3'    'Queens of the Stone Age - Go With The Flow.mp3'
@@ -251,25 +273,52 @@ Queen:
 'Bohemian Rhapsody.mp3'   Desktop.ini  'Queen - Bicycle Race.mp3'   Thumbs.db
 andrewbavuels@the-Legionnaire:/mnt/c/Users/andre/Music/Rock$
 ```
+#### Search by Number of Characters (?)
 
-`ls <word>?`
+- `ls <word>? :` Lists files and directories where the <word> is followed by a single character.
+
 ```sh
 andrewbavuels@the-Legionnaire:/mnt/c/Users/andre/Music/Rock$ ls album*
 album1  album666
+```
+- `ls <word>??? :` Lists files and directories where the <word> is followed by exactly three characters.
 
+```sh
 andrewbavuels@the-Legionnaire:/mnt/c/Users/andre/Music/Rock$ ls album?
 album1
 
 andrewbavuels@the-Legionnaire:/mnt/c/Users/andre/Music/Rock$ ls album???
 album666
 ```
-`ls -d [[:upper:]]*`
+
+### Search by Digits
+
+- `ls <word>[<digit>-<digit>]* :` Lists files and directories where the <word> is followed by digits in a specified range.
+
+```sh
+andrewbavuels@the-Legionnaire:/mnt/c/Users/andre/Music/Rock$ ls album[1-3]*
+album1  album2  album3
+```
+- `ls <word>[<digit>] :` Lists files and directories where the <word> is followed by a single digit.
+
+```sh
+andrewbavuels@the-Legionnaire:/mnt/c/Users/andre/Music/Rock$ ls album[1-9]*
+album1  album2  album3  album4  album5  album6  album7  album8  album9
+```
+
+### Search by Character Ranges ([])
+
+
+- `ls -d [[:upper:]]* :` Lists directories that start with an uppercase letter.
+
+
 ```sh
 andrewbavuels@the-Legionnaire:~$ ls -d [[:upper:]]*
 Anaconda3-2024.06-1-Linux-x86_64.sh  Anaconda3-2024.06-1-Linux-x86_64.sh:Zone.Identifier
 ```
 
-`ls -d [[:lower:]]*`
+- `ls -d [[:lower:]]* :` Lists directories that start with a lowercase letter.
+
 ```sh
 andrewbavuels@the-Legionnaire:~$ ls -d [[:lower:]]*
 amdgpu-install_5.5.50503-1_all.deb  command_line  go1.22.4.linux-amd64.tar.gz  python
@@ -277,8 +326,19 @@ anaconda.sh                         databases     listado.txt                  r
 anaconda3                           eda           misarchivos.txt              web_project
 anaconda_deletion                   git_github    mitexto.txt                  wget-log
 ```
-`ls [cRC]*`
+
+- `ls [cRC]* :` Lists files and directories that start with any of the characters c, R, or C.
+
 ```sh
 andrewbavuels@the-Legionnaire:~/command_line$ ls [cRC]*
 Content.docx  README.md  command-line-cheat-sheet.pdf  command-line-cheat-sheet.pdf:Zone.Identifier
 ```
+### Wildcard Table
+
+| Wildcard              | Function                            |
+| --------------------- | ----------------------------------- |
+| `*`                   | Search Everything                   |
+| `?`                   | Search by Number of Characters      |
+| `[]`                  | Search by Specific Characters       |
+| `[<digit>-<digit>]`   | Search by Digits                    |
+
