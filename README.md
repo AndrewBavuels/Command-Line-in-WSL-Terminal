@@ -9,6 +9,9 @@
 3. [Manipulating files and folders](#3-manipulating-files-and-folders)
 4. [Exploring the content of our files](#4-exploring-the-content-of-our-files)
 5. [Wildcards](#5-Wildcards)
+6. [Shell Redirections](#6-Shell-Redirections)
+7. [Pipe Operator Redirections](#7-Pipe-Operator-Redirections)
+8. [Chaining Commands with Shell Control Operators](#8-Chaining-Commands-with-Shell-Control-Operators)
 
 ---
 
@@ -493,3 +496,208 @@ andrewbavuels@the-Legionnaire:~/Downloads$ less output.txt
 | `<<<`    | Redirects a string to the input of a command.                                                |
 | `|`      | Pipes the output of one command as input to another command.                                  |
 | `|&`     | Pipes both Standard Output (stdout) and Standard Error (stderr) to another command.           |
+
+As you have observed in practice, redirecting output and errors in the terminal is essential for **effective system management** and **debugging**. 
+
+Capturing both standard output and errors helps with **precise problem diagnosis**, prevents information loss, and maintains useful logs, leading to more reliable system administration.
+
+## 7. Pipe Operator Redirections
+
+The pipe operator allows you to take the output of one command and pass it as input to another command. Here’s how it works with some useful commands:
+
+#### Commands with Pipe Operator
+
+- **Concatenate Text (cat)**
+
+  Use `cat` to concatenate the output of multiple files. For example, you can combine the contents of `error.txt` and `output.txt`:
+
+  ```sh
+  cat error.txt output.txt
+  ```
+- **Create a File from Output (tee)**
+
+Use `tee` to create a file from the output of a command. For example, save the long format listing of files to output.txt:
+
+  ```sh
+  ls -lh | tee output.txt
+  ```
+- **Organize Files with sort**
+
+Use `sort` to alphabetically organize the output. For example, save the sorted list of files to `documents.txt`:
+
+  ```sh
+  ls -lh | sort | tee documents.txt | less
+  ``` 
+### Pipe Operator Commands Table
+
+| Command | Function                                      |
+| ------- | --------------------------------------------- |
+| `sort`  | Organizes output alphabetically              |
+| `cat`   | Concatenates multiple files or inputs        |
+| `tee`   | Creates a file from input and displays it    |
+
+### Bonus Commands Table
+
+| Command                                              | Function                                           |
+| ---------------------------------------------------- | -------------------------------------------------- |
+| `cowsay "Hello World!"`                             | Prints "Hello World!" using `cowsay`.             |
+| `sudo apt install cowsay`                           | Installs the `cowsay` program.                    |
+| `sudo apt install lolcat`                           | Installs the `lolcat` program.                    |
+| `echo "Hello World!" | lolcat`                      | Pipes "Hello World!" through `lolcat` for colorization. |
+| `cowsay "Hello World!" | lolcat | tee cow.txt`      | Saves the output of `cowsay` piped through `lolcat` to `cow.txt` and displays it. |
+
+```sh
+andrewbavuels@the-Legionnaire:/mnt/c/Users/andre$ cowsay "Hello World!" | lolcat
+ ______________
+< Hello World! >
+ --------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+```
+
+## 8. Chaining Commands with Shell Control Operators
+
+Shell control operators are special symbols that allow you to chain commands together, streamline your workflow, and handle multiple tasks more efficiently.
+
+### Commands in the Same Line (`;`)
+
+The `;` operator allows you to run multiple commands sequentially on the same line. Each command runs regardless of the success or failure of the previous commands.
+
+```sh
+andrewbavuels@the-Legionnaire:/mnt/c/Users/andre/Pictures$ ls; mkdir hi; cal
+```
+**Explanation:**
+
+  - Lists the files in the current directory.
+  - Creates a directory named "hi".
+  - Prints the calendar for the current month.
+
+```sh
+'0. CyberpunkNomad (Viajes Inter)'  '3. VIVE COLOMBIA (viajesillos)'  'Camera Roll'   misarchivos.txt
+'1. BARRANQUILLA'                   '4. SPECIAL GUESTS'                Screenshots
+'2. BOGOTA'                          AuxVID                            desktop.ini
+     July 2024
+Su Mo Tu We Th Fr Sa
+    1  2  3  4  5  6
+ 7  8  9 10 11 12 13
+14 15 16 17 18 19 20
+21 22 23 24 25 26 27
+28 29 30 31
+
+andrewbavuels@the-Legionnaire:/mnt/c/Users/andre/Pictures$ ls
+'0. CyberpunkNomad (Viajes Inter)'  '3. VIVE COLOMBIA (viajesillos)'  'Camera Roll'   hi
+'1. BARRANQUILLA'                   '4. SPECIAL GUESTS'                Screenshots    misarchivos.txt
+'2. BOGOTA'                          AuxVID                            desktop.ini
+```
+### Asynchronous Commands (&)
+The `&` operator runs commands asynchronously, meaning they execute simultaneously in the background. This allows you to run multiple commands at the same time.
+
+```sh
+andrewbavuels@the-Legionnaire:/mnt/c/Users/andre/Pictures$ ls & date & cal
+[1] 11612
+[2] 11613
+     July 2024
+Su Mo Tu We Th Fr Sa
+    1  2  3  4  5  6
+ 7  8  9 10 11 12 13
+14 15 16 17 18 19 20
+21 22 23 24 25 26 27
+28 29 30 31
+
+andrewbavuels@the-Legionnaire:/mnt/c/Users/andre/Pictures$ '0. CyberpunkNomad (Viajes Inter)'  '3. VIVE COLOMBIA (viajesillos)'  'Camera Roll'   hi
+'1. BARRANQUILLA'                   '4. SPECIAL GUESTS'                Screenshots    misarchivos.txt
+'2. BOGOTA'                          AuxVID                            desktop.ini
+Sun Jul 28 13:58:17 CEST 2024
+^C
+[1]-  Done                    ls --color=auto
+[2]+  Done                    date
+```
+**Explanation:**
+
+  - `ls` lists the files in the directory..
+  - `date` prints the current date and time.
+  - `cal` prints the calendar for the current month.
+
+### Conditional Commands (&& and ||)
+
+- **Conditional AND (`&&`)**
+
+The `&&` operator executes the next command only if the previous command was successful (i.e., returned an exit status of 0).
+
+```sh
+andrewbavuels@the-Legionnaire:/mnt/c/Users/andre/Pictures$ mkdir test && cd test
+```
+**Explanation:**
+
+  - Creates a directory named "test".
+  - Changes to the "test" directory only if the `mkdir` command was successful.
+
+```sh
+andrewbavuels@the-Legionnaire:/mnt/c/Users/andre/Pictures/test$ pwd
+/mnt/c/Users/andre/Pictures/test
+```
+- **Conditional OR (`||`)**
+
+The `||` operator executes the next command only if the previous command failed (i.e., returned a non-zero exit status).
+
+```sh
+andrewbavuels@the-Legionnaire:/mnt/c/Users/andre/Pictures/test$ cd uwhpwj || touch file.txt || echo "File created"
+```
+
+**Explanation:**
+
+  - Attempts to change to the directory "uwhpwj". If it fails, creates a file named "file.txt".
+  - If `cd` fails and `touch` also fails, prints "File created".
+
+```sh
+-bash: cd: uwhpwj: No such file or directory
+file.txt
+```
+```sh
+andrewbavuels@the-Legionnaire:/mnt/c/Users/andre/Pictures/test$ cd hruhjwjh || echo "Folder changing"
+```
+**Explanation:**
+
+  - Attempts to change to the directory "hruhjwjh". If it fails, prints "Folder changing".
+
+```sh
+-bash: cd: hruhjwjh: No such file or directory
+Folder changing
+```
+### Operators Table
+
+| Operator | Function                                                                |
+| -------- | ----------------------------------------------------------------------- |
+| `;`      | Executes commands sequentially, regardless of the previous command's success |
+| `&`      | Executes commands asynchronously, allowing multiple commands to run simultaneously |
+| `&&`     | Executes the next command only if the previous command succeeded       |
+| `||`     | Executes the next command only if the previous command failed           |
+
+### Commands Table
+
+| Command | Function                                        |
+| ------- | ----------------------------------------------- |
+| `echo`  | Prints the message you specify                  |
+| `cal`   | Prints a calendar with the current date         |
+| `date`  | Prints the current date and time                |
+| `pwd`   | Prints the current working directory            |
+| `mkdir` | Creates a new directory                        |
+| `ls`    | Lists files and directories in the current directory |
+| `touch` | Creates an empty file                          |
+
+```sh
+andrewbavuels@the-Legionnaire:/mnt/c/Users/andre/Pictures/test$ cd ui748o3nr || touch file.txt && cowsay "Happy
+ hacking!" | lolcat
+-bash: cd: ui748o3nr: No such file or directory
+ ________________
+< Happy hacking! >
+ ----------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+```
