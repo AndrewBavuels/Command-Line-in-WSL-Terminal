@@ -17,19 +17,20 @@
 
 ## 1. What is the terminal?
 
-- The terminal is an indispensable tool that anyone in technology must know 👀. It is important because:
+The terminal is an indispensable tool that anyone in technology must know 👀. It is important because:
   1. **It gives you flexibility 📏.** With just a few commands, you can do a lot.
   2. **It is much faster than a graphical interface 💻.**
   3. **It is your only option if there is no interface 😆,** such as for configuring a remote server.
   4. **You can invoke daemons 👿.** You need to be careful with commands, such as **remove.**
 
-- Specifically, the terminal is a very simple graphical interface that simulates a command line:
-  1. **Terminal:** Window that shows the prompt.
-  2. **Shell (command line):** Program that executes commands. There are various types of shells, but they all serve the same purpose. The most common ones are the bash shell or Z shell. In this course, we will use the former 🍎.
+The terminal is a fundamental tool that provides a command line environment through a graphical interface. Here’s a breakdown:
 
-- **It is important to start using Linux 😟.**
+  1. **Terminal:** The black window where you see the command prompt.
+  2. **Shell (command line):** The program that executes your commands. In WSL Ubuntu, the default shell is Bash 🍎.
+  3. **Command:** A program that you can run from the terminal.
 
-- A command is a program that can be executed from the terminal.
+**Pro Tip:** Mastering Linux is a must 🚀.
+
 
 ![outFile](https://github.com/user-attachments/assets/bdb5f8a1-35fe-40d4-bb0f-9c9e562ede01)
 
@@ -701,3 +702,162 @@ andrewbavuels@the-Legionnaire:/mnt/c/Users/andre/Pictures/test$ cd ui748o3nr || 
                 ||----w |
                 ||     ||
 ```
+
+## 9. Permission Management
+
+Permissions define what actions users can perform on files and directories in a Linux system. They are displayed using `ls -l`, where the first column shows permissions.
+
+#### File Types
+- `-` : Regular file (e.g., text, photo, video).
+- `d` : Directory.
+- `l` : Symbolic link.
+- `b` : Block device (system-related files, e.g., disk info).
+
+#### User Categories
+- **Owner**: Creator of the file; highest authority.
+- **Group**: Shared permissions for group members.
+- **World**: All other users; lowest authority.
+
+#### Permission Types
+- `r` (readable): View contents.
+- `w` (writable): Edit file content, name, or permissions.
+- `x` (executable): Run as a program.
+
+Permissions are listed in the order `rwx` or replaced with `-` if unavailable. Example:  
+`drwxr-xr-x`  
+- `d`: Directory.  
+- **Owner**: `rwx` (read, write, execute).  
+- **Group**: `r-x` (read, execute).  
+- **World**: `r-x` (read, execute).
+
+#### Octal Representation
+Permissions are converted to octal using binary:  
+- `rwx = 111 = 7`  
+- `rw- = 110 = 6`  
+- `r-- = 100 = 4`
+
+Example: `rwxr-xr--`  
+- **Owner**: `rwx = 7`.  
+- **Group**: `r-x = 5`.  
+- **World**: `r-- = 4`.  
+- Octal: `754`.
+
+<!-- #### Practice Exercises
+Convert the following:
+1. A directory: Owner (read, write), Group (write, execute), World (no permissions).
+2. A symbolic link: Owner (all), Group & World (read only).
+3. A regular file: Owner & Group (all), World (read, write).
+
+Practice interpreting and modifying permissions in the terminal! -->
+
+## 10. Modifying Permissions in the Terminal
+
+Follow these steps to explore file permissions in Linux:
+
+#### 1. Create a Directory and File
+
+```sh
+mkdir sandbox
+cd sandbox/
+> mytext.txt
+cat > mytext.txt
+```
+
+Add text (Hello world from Holidata!) and view it:
+
+```sh
+cat mytext.txt
+```
+#### 2. Check Initial Permissions
+
+```sh
+ls -l
+# Output: -rw-r--r-- 1 andrewbavuels andrewbavuels
+```
+#### 3. Change Permissions with `chmod`
+
+- Add execution rights to all:
+
+```sh
+chmod 755 mytext.txt
+ls -l
+# Output: -rwxr-xr-x
+```
+
+- Remove read permission for the owner:
+
+```sh
+chmod u-r mytext.txt
+ls -l
+# Output: --wxr-xr-x
+```
+- Attempting to read results in:
+
+```sh
+cat mytext.txt
+# Output: Permission denied
+```
+#### 4. Restore Permissions
+
+- Add read permission back to the owner:
+
+```sh
+chmod u+r mytext.txt
+ls -l
+# Output: -rwxr-xr-x
+cat mytext.txt
+```
+- Adjust multiple permissions:
+
+```sh
+chmod u-x,go=w mytext.txt
+ls -l
+# Output: -rw--w--w-
+```
+#### 5. Switch Users and Manage Permissions
+
+- Check your current user and groups:
+
+```sh
+whoami
+id
+```
+
+- Switch to root, create a file, and return:
+
+```sh
+su root
+touch rootfile.txt
+su andrewbavuels
+ls -l
+```
+Observe ownership differences.
+
+#### 6. Remove Files with Appropriate Permissions
+
+- Attempt to remove `rootfile.txt` as a regular user:
+
+```sh
+rm rootfile.txt
+# Output: Permission denied
+```
+
+- Use `sudo` to remove it:
+
+```sh
+sudo rm rootfile.txt
+ls
+# Output: mytext.txt
+```
+
+## 11. How to set environment variables
+
+
+
+
+
+
+
+
+
+
