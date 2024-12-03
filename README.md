@@ -1250,4 +1250,126 @@ andrewbavuels@the-Legionnaire:~/command_line$ wc -c movies.csv
 477779 movies.csv
 ```
 
+## 14. Compressing tar and zip files
 
+### Summary
+
+This section demonstrates how to create and extract compressed files using `tar` and `zip` utilities.
+
+1. **Create a `.tar` file**:
+    - `tar -cvf ToCompress.tar ToCompress/` creates a `.tar` archive of the `ToCompress` directory.
+
+2. **Create a `.tar.gz` file**:
+    - `tar -cvzf ToCompress.tar.gz ToCompress/` creates a compressed `.tar.gz` file.
+
+3. **Extract `.tar` file**:
+    - `tar -xzvf ToCompress.tar.gz` extracts the `.tar.gz` archive.
+
+4. **Create a `.zip` file**:
+    - `zip -r ToCompressInZip.zip ToCompress` compresses the `ToCompress` directory into a `.zip` file.
+
+5. **Extract `.zip` file**:
+    - `unzip ToCompressInZip.zip` extracts the `.zip` file contents.
+
+### Explanation
+
+- **`tar`**: Used for archiving, with optional compression (`-z` for gzip). The `.tar.gz` format is common on Unix-like systems.
+- **`zip`**: Creates compressed `.zip` archives, widely used across platforms.
+
+### Code Example
+
+```bash
+andrewbavuels@the-Legionnaire:~/command_line$ zip -r ToCompressInZip.zip ToCompress
+  adding: ToCompress/ (stored 0%)
+  adding: ToCompress/file3 (stored 0%)
+  adding: ToCompress/file2 (stored 0%)
+  adding: ToCompress/file (stored 0%)
+
+andrewbavuels@the-Legionnaire:~/command_line$ ls
+ToCompressInZip.zip
+
+andrewbavuels@the-Legionnaire:~/command_line$ unzip ToCompressInZip.zip
+Archive:  ToCompressInZip.zip
+ extracting: ToCompress/file3
+ extracting: ToCompress/file2
+ extracting: ToCompress/file
+```
+### Key Takeaways
+
+- Use `tar` for archiving and compression, especially on Unix systems.
+- Use `zip` for cross-platform file compression.
+
+## 15. Process Management
+
+This section covers managing processes in Linux using commands like `ps`, `top`, `kill`, and background tasks.
+
+1. **View running processes**:
+    - `ps` shows the current processes running in the terminal. It lists the process ID (PID), terminal, time used, and command.
+
+2. **Run a command in the background**:
+    - Using `&` to run a command in the background. For example, `cat & ls` runs `cat` in the background and immediately returns the prompt for `ls`.
+
+3. **Check the process list**:
+    - `ps` will show the list of running processes. You can see background jobs (e.g., `cat` processes running in the background).
+
+4. **Stop a process**:
+    - You can stop a running process using the `kill` command with the process ID (PID). For example, `kill 9979` will terminate the process with PID 9979.
+
+5. **Monitor processes in real time**:
+    - `top` shows the real-time resource usage of processes on the system, including CPU and memory usage.
+
+### Explanation
+
+- **`ps`**: Displays a snapshot of running processes.
+- **`&`**: Runs a command in the background, freeing up the terminal for other commands.
+- **`kill`**: Terminates a process by its PID.
+- **`top`**: Shows dynamic, real-time information about system processes, memory usage, and CPU usage.
+
+### Code Example
+
+```bash
+andrewbavuels@the-Legionnaire:~/command_line$ ps
+  PID TTY          TIME CMD
+   10 pts/0    00:00:00 bash
+  9834 pts/0    00:00:00 ps
+
+andrewbavuels@the-Legionnaire:~/command_line$ cat & ls
+[1] 9979
+Content.docx              command-line-cheat-sheet.pdf
+GITS.gif:Zone.Identifier  command-line-cheat-sheet.pdf:Zone.Identifier
+Images                    index.html
+LICENSE                   movies.csv
+README.md                 movies_afffe2e6-a55c-47f0-8895-9d37c9cd9eb8.csv:Zone.Identifier
+ToCompress                outFile.gif
+ToCompress.tar            sandbox
+ToCompress.tar.gz         slides.pdf
+ToCompressInZip.zip       with_no_towers.txt
+Welcome.mp4
+
+andrewbavuels@the-Legionnaire:~/command_line$ ps
+  PID TTY          TIME CMD
+   10 pts/0    00:00:00 bash
+  9979 pts/0    00:00:00 cat
+  9999 pts/0    00:00:00 ps
+
+[1]+  Stopped                 cat
+andrewbavuels@the-Legionnaire:~/command_line$ kill 9979
+andrewbavuels@the-Legionnaire:~/command_line$ ps
+  PID TTY          TIME CMD
+   10 pts/0    00:00:00 bash
+  9979 pts/0    00:00:00 cat
+  10054 pts/0    00:00:00 ps
+
+andrewbavuels@the-Legionnaire:~/command_line$ top
+top - 15:54:29 up 56 min,  0 users,  load average: 0.06, 0.07, 0.02
+Tasks:  31 total,   1 running,  28 sleeping,   2 stopped,   0 zombie
+%Cpu(s):  0.1 us,  0.1 sy,  0.0 ni, 99.7 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :   7870.3 total,   7058.8 free,    657.1 used,    154.5 buff/cache
+MiB Swap:   2048.0 total,   2048.0 free,      0.0 used.   7006.2 avail Mem
+```
+
+### Key Takeaways
+- Use `ps` to monitor current processes and their resource usage.
+- Background jobs are managed with `&`, and can be viewed or controlled using `ps`.
+- Use `kill` to stop unwanted processes.
+- `top` provides a dynamic and real-time view of the system’s processes and resources.
