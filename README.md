@@ -852,12 +852,402 @@ ls
 
 ## 11. How to set environment variables
 
+Environment variables are dynamic values that can affect the behavior of running processes on a computer. This guide will walk you through managing and using environment variables in Linux with practical examples from a real-world setup.
 
+1. Viewing Current Environment Variables  
+To view all environment variables in your system, use:
 
+```sh
+printenv
+```
+This will display a list of key-value pairs for all environment variables. For example:
 
+```sh
+SHELL=/bin/bash
+HOME=/home/andrewbavuels
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+```
+Practical Example
 
+```sh
+andrewbavuels@the-Legionnaire:~$ printenv
+...
+HOME=/home/andrewbavuels
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+```
 
+Accessing Specific Environment Variables
+To access a specific environment variable, use echo followed by the variable name prefixed with $:
 
+```sh
+echo $HOME
+```
+Example Output
 
+```sh
+/home/andrewbavuels
+```
+Navigating with Environment Variables
+You can use environment variables directly in navigation commands. For example:
+Navigate to the home directory:
+
+```sh
+cd $HOME
+```
+Navigate back:
+
+```sh
+cd -
+```
+
+Practical Workflow
+
+```sh
+andrewbavuels@the-Legionnaire:~$ cd $HOME
+andrewbavuels@the-Legionnaire:~$ pwd
+/home/andrewbavuels
+```
+
+Modifying the PATH Variable
+The PATH variable defines the directories where your shell looks for executable files. You can add custom directories to PATH dynamically or permanently.
+Temporary Modification
+To temporarily add a directory to PATH:
+
+```sh
+export PATH=$PATH:/path/to/new/directory
+```
+Permanent Modification
+To make the change permanent, edit your shell configuration file (e.g., .bashrc or .zshrc):
+
+```sh
+nano ~/.bashrc
+```
+Add this line:
+
+```sh
+export PATH=$PATH:/path/to/new/directory
+```
+Then apply the changes:
+
+```sh
+source ~/.bashrc
+```
+Creating a Symbolic Link to a Directory
+A symbolic link (symlink) can simplify navigation by providing a shortcut to another directory.
+Command
+
+```sh
+ln -s /path/to/target /path/to/link
+```
+Practical Example
+
+Linking the cyberpunkNoMAD directory to the current directory:
+
+```sh
+ln -s /mnt/c/Users/andre/cyberpunkNoMAD cyberpunkNoMAD
+cd cyberpunkNoMAD
+```
+
+Listing Directory Contents
+To view detailed information about files and symbolic links in your home directory, use:
+
+```sh
+ls -la
+```
+Practical Example
+
+```sh
+andrewbavuels@the-Legionnaire:~$ ls -la
+lrwxrwxrwx  1 andrewbavuels andrewbavuels         23 Jul 16 11:30  .aws -> /mnt/c/Users/andre/.aws
+lrwxrwxrwx  1 andrewbavuels andrewbavuels         25 Jul 16 11:30  .azure -> /mnt/c/Users/andre/.azure
+```
+
+Practical Environment Variable Usage
+View Current Directories in PATH
+
+```sh
+echo $PATH
+```
+Output Example
+
+```sh
+/home/andrewbavuels/.local/bin:/home/andrewbavuels/.nvm/versions/node/v20.15.1/bin:/usr/local/bin
+```
+Use Case
+If a command is not recognized, ensure its executable's directory is included in your PATH.
+
+Cleaning Up
+If you no longer need a symbolic link or wish to reset an environment variable:
+Remove a symlink:
+
+```sh
+rm symlink_name
+```
+Unset an environment variable (temporary):
+
+```sh
+unset VARIABLE_NAME
+```
+By mastering these commands, you'll efficiently manage your Linux environment, enabling smooth workflows and effective customizations.
+
+## 12: Search Commands
+
+In this chapter, we will go through search commands used in the terminal. The `find` command is a powerful tool for locating files and directories on your system based on various criteria.
+
+### Commands Used in This Chapter
+
+#### 1. `which` Command
+
+The `which` command is used to find the location of executables in your system’s PATH.
+
+```sh
+andrewbavuels@the-Legionnaire:~/git_github$ which cd
+andrewbavuels@the-Legionnaire:~/git_github$ type cd
+cd is a shell builtin
+andrewbavuels@the-Legionnaire:~/git_github$ which code
+/mnt/c/Users/andre/AppData/Local/Programs/Microsoft VS Code/bin/code
+```
+
+- The `which` command finds the path of an executable. If it’s a shell builtin (like `cd`), it will indicate that.
+- The example shows that `cd` is a shell builtin, while `code` is located in a specific directory.
+
+#### 2. `find` Command
+
+The `find` command is used to search for files and directories within a given directory.
+
+**Example 1:** Searching for files named `file` in the current directory
+
+```sh
+andrewbavuels@the-Legionnaire:~/git_github$ find ./ -name file
+```
+
+**Example 2:** Searching for files named file in the home directory
+
+```sh
+andrewbavuels@the-Legionnaire:~/git_github$ find ~ -name file
+/home/andrewbavuels/anaconda3/lib/python3.12/site-packages/spyder/images/file
+^[[A^[[A/home/andrewbavuels/anaconda3/pkgs/spyder-5.5.1-py312h06a4308_0/lib/python3.12/site-packages/spyder/images/file
+^[[B^[[B^[[B^[[B^[[B^[[B^[[A^[[Aq^X/home/andrewbavuels/.eclipse/org.jkiss.dbeaver.product_23.0.5_302967072_linux_gtk_x86_64/configuration/org.eclipse.osgi/255/0/.cp/icons/file
+^C
+```
+
+- This command searches for a file named `file` in your home directory (`~`).
+- The output shows the paths where the file is located.
+
+**Example 3:** Searching for `.txt` files in the home directory and viewing them with `less`
+
+```sh
+andrewbavuels@the-Legionnaire:~/git_github$ find ~ -name *.txt
+/home/andrewbavuels/error.txt
+/home/andrewbavuels/.nvm/versions/node/v20.15.1/lib/node_modules/npm/node_modules/emoji-regex/LICENSE-MIT.txt
+...
+andrewbavuels@the-Legionnaire:~/git_github$ find ~ -name *.txt | less
+```
+
+This command finds all .txt files in the home directory. Piping the output to less allows you to scroll through it easily.
+
+**Example 4:** Searching for directories named Downloads
+
+```sh
+andrewbavuels@the-Legionnaire:~/git_github$ find ~ -type d -name Downloads
+/home/andrewbavuels/Downloads
+```
+
+This command searches for directories (-type d) named Downloads in the home directory.
+
+**Example 5:** Searching for .log files in the home directory
+
+```sh
+andrewbavuels@the-Legionnaire:~/git_github$ find ~ -type f -name *.log
+...
+/home/andrewbavuels/.vscode-server/data/logs/20241202T150614/exthost1/vscode.github/GitHub.log
+```
+
+This command searches for files (-type f) with a .log extension.
+
+**Example 6:** Searching for files larger than 20MB
+
+```sh
+andrewbavuels@the-Legionnaire:~/git_github$ find ~ -size 20M
+/home/andrewbavuels/.npm/_cacache/content-v2/sha512/bb/07/48ebbc4e1513024bae99910f2ad4386f3cc499ee593d65f1c6072fede021f6f54727ee3a8746b6addcd06ee03397e959c68a09e189329677469ac2b3cb8e
+/home/andrewbavuels/anaconda3/pkgs/panel-1.4.4-py312h06a4308_0.conda
+...
+```
+
+This command finds all files that are larger than 20MB.
+
+**Example 7:** Searching for files larger than 5MB
+
+```sh
+andrewbavuels@the-Legionnaire:~/git_github$ find ~ -size 5M
+/home/andrewbavuels/.npm/_cacache/content-v2/sha512/c9/84/8d0dcebd2172fa73312747fed00c7e2bc036a364c7bd0bff69d322ff5772dcbc92b86a3930095ebab03baeff930fbce53bcad2469eca8d43bfdfbc3d269d
+...
+```
+
+This command finds all files larger than 5MB.
+
+### Practice Exercise
+
+#### Task:
+- Find files greater than 100MB, with a maximum depth of 4, that start with the letter "d".
+- Find files with the .pdf extension, with a minimum depth of 2.
+- Find empty directories starting with the letter "A", with a maximum depth of 5.
+- Find files that contain the letter "j" and are larger than 1 byte. Save the output to a file named `LosArchivosJ.txt`. Once completed, print the message "Comando terminado con éxito".
+
+#### Solutions:
+
+```sh
+# 1. Find files greater than 100MB, with a depth of 4, that start with "d"
+find ~ -maxdepth 4 -type f -name 'd*' -size +100M
+
+# 2. Find .pdf files with a minimum depth of 2
+find ~ -mindepth 2 -type f -name "*.pdf"
+
+# 3. Find empty directories starting with "A", with a depth of 5
+find ~ -maxdepth 5 -type d -name "A*" -empty
+
+# 4. Find files containing the letter "j" and greater than 1 byte, save to a file and print message
+find ~ -type f -name "*j*" -size +1b > LosArchivosJ.txt
+echo "Comando terminado con éxito"
+```
+
+The first command finds all files greater than 100MB that start with "d" within a maximum depth of 4 directories.
+The second command finds all .pdf files with at least 2 directory levels.
+The third command searches for empty directories starting with "A" within a depth of 5.
+The fourth command finds files with the letter "j" and a size greater than 1 byte, saves the results in `LosArchivosJ.txt`, and prints a success message.
+
+### Summary
+
+The `find` command is versatile and can be used for a variety of search operations based on criteria like file type, size, name, depth, and more. Mastering this command allows for more efficient navigation and management of files and directories on your system.
+
+## 13. Using the grep command
+
+Explore the `grep` command in Linux to search for specific text within files. Here's how to work with a file named `movies.csv`.
+
+#### 1. Listing Files
+
+First, we list the files to confirm that `movies.csv` is present:
+
+```sh
+andrewbavuels@the-Legionnaire:~/command_line$ ls -lh
+total 20M
+-rw-r--r-- 1 andrewbavuels andrewbavuels 1.1M Dec  3 12:13  Content.docx
+-rw-r--r-- 1 andrewbavuels andrewbavuels    0 Jul 17 11:59  GITS.gif:Zone.Identifier
+drwxr-xr-x 2 andrewbavuels andrewbavuels 4.0K Jul 17 13:43  Images
+-rw-r--r-- 1 andrewbavuels andrewbavuels  35K Jul 17 10:47  LICENSE
+-rw-r--r-- 1 andrewbavuels andrewbavuels  39K Dec  3 13:22  README.md
+-rw-r--r-- 1 andrewbavuels andrewbavuels 9.2M Aug 22 11:26  Welcome.mp4
+-rw-r--r-- 1 andrewbavuels andrewbavuels 117K Jul 17 07:50  command-line-cheat-sheet.pdf
+-rw-r--r-- 1 andrewbavuels andrewbavuels    0 Jul 17 07:50  command-line-cheat-sheet.pdf:Zone.Identifier
+-rw-r--r-- 1 andrewbavuels andrewbavuels 467K Dec  3 13:23  movies.csv
+```
+
+We will focus on `movies.csv`.
+
+#### 2. Searching for a Specific Term
+
+To search for the term "Towers" in the file, use:
+
+```sh
+andrewbavuels@the-Legionnaire:~/command_line$ grep Towers movies.csv
+108583,Fawlty Towers (1975,Comedy,-1980,1,54
+5952,"Lord of the Rings: The Two Towers, The",Adventure|Fantasy,2002,4,81
+```
+
+This shows all lines containing the word "Towers."
+
+#### 3. Case-insensitive Search
+
+You can search without considering case by using the `-i` flag:
+
+```sh
+andrewbavuels@the-Legionnaire:~/command_line$ grep -i the movies.csv
+32898,"Trip to the Moon, A (Voyage dans la lune, Le)",Action|Adventure|Fantasy|Sci-Fi,1902,7,80
+7065,"Birth of a Nation, The",Drama|War,1915,6,92
+7243,Intolerance: Love's Struggle Throughout the Ages,Drama,1915,4,82
+```
+
+This finds all instances of the word "the," regardless of case.
+
+#### 4. Count Occurrences
+
+To count how many lines contain a specific term, use `-c`:
+
+```sh
+andrewbavuels@the-Legionnaire:~/command_line$ grep -c the movies.csv
+1013
+```
+
+To count case-insensitively:
+
+```sh
+andrewbavuels@the-Legionnaire:~/command_line$ grep -ci the movies.csv
+2912
+```
+
+#### 5. Exclude Lines with a Specific Term
+
+To exclude lines containing a certain term, use the `-v` flag:
+
+```sh
+andrewbavuels@the-Legionnaire:~/command_line$ grep -vi towers movies.csv
+8572,"Littlest Rebel, The",Children|Drama,1935,1,61
+52913,Sylvia Scarlett,Comedy|Drama|Romance,1935,4,64
+87383,Curly Top,Children|Musical|Romance,1934,5,91
+91286,"Little Colonel, The",Children|Comedy|Crime|Drama,1934,3,54
+```
+
+This excludes lines containing "towers" (case-insensitive).
+
+#### 6. Redirect Output to a New File
+
+You can redirect the output of the previous search to a new file:
+
+```sh
+andrewbavuels@the-Legionnaire:~/command_line$ grep -vi towers movies.csv > with_no_towers.txt
+```
+
+Check the contents of `with_no_towers.txt`:
+
+```sh
+andrewbavuels@the-Legionnaire:~/command_line$ cat with_no_towers.txt
+8572,"Littlest Rebel, The",Children|Drama,1935,1,61
+52913,Sylvia Scarlett,Comedy|Drama|Romance,1935,4,64
+87383,Curly Top,Children|Musical|Romance,1934,5,91
+91286,"Little Colonel, The",Children|Comedy|Crime|Drama,1934,3,54
+99085,Our Little Girl,Comedy|Drama|Romance,1934,6,67
+947,My Man Godfrey,Comedy|Romance,1935,5,91
+...
+```
+
+#### 7. Word and Line Count
+
+You can count the words and lines in `movies.csv` using `wc`:
+
+```sh
+andrewbavuels@the-Legionnaire:~/command_line$ wc movies.csv
+  9126  30006 477779 movies.csv
+```
+
+- `-l` counts lines:
+  
+```sh
+andrewbavuels@the-Legionnaire:~/command_line$ wc -l movies.csv
+9126 movies.csv
+```
+
+- `-w` counts words:
+
+```sh
+andrewbavuels@the-Legionnaire:~/command_line$ wc -w movies.csv
+30006 movies.csv
+```
+
+- `-c` counts bytes:
+
+```sh
+andrewbavuels@the-Legionnaire:~/command_line$ wc -c movies.csv
+477779 movies.csv
+```
 
 
