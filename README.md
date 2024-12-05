@@ -1373,3 +1373,76 @@ MiB Swap:   2048.0 total,   2048.0 free,      0.0 used.   7006.2 avail Mem
 - Background jobs are managed with `&`, and can be viewed or controlled using `ps`.
 - Use `kill` to stop unwanted processes.
 - `top` provides a dynamic and real-time view of the system’s processes and resources.
+
+## 16. Text Editors in the Terminal
+
+This section demonstrates using terminal-based text editors, focusing on Vim. Vim is a powerful and widely-used text editor for creating and modifying files directly in the terminal.
+
+### Key Commands in Vim
+
+1. **Launch Vim**:
+   - Open Vim by typing `vim` followed by the file name:
+     ```sh
+     vim index.html
+     ```
+
+2. **Insert Mode**:
+   - Press `I` to enter **INSERT** mode, where you can edit the file content.
+     ```html
+     <div>Hello world</div>
+     ```
+
+3. **Exit Insert Mode**:
+   - Press `Esc` to return to command mode.
+
+4. **Delete Content**:
+   - In command mode, press `dd` to delete a line.
+
+5. **Save and Exit**:
+   - In command mode, type `:wq` to save changes and exit.
+   - To save without quitting, type `:w`.
+   - To quit without saving, type `:q!`.
+
+6. **Force Save and Quit**:
+   - Use `:wq!` to force save and exit.
+
+---
+
+### Workflow Example
+
+#### Open a File and Edit
+
+1. Open an HTML file for editing:
+   ```sh
+   vim index.html
+   ```
+
+
+2. Enter INSERT mode by pressing `I` and add content:
+
+   ```sh
+   <div>Hello world</div>
+   ```
+
+3. Exit INSERT mode by pressing `Esc`
+
+
+4. Save the changes and quit Vim:
+
+   ```sh
+   :wq
+   ```
+
+
+5. Verify the file content:
+
+   ```sh
+   cat index.html
+    <div>Hello world</div>
+   ```
+
+### Useful Tips
+
+- Undo: Press `u` in command mode to undo the last action.
+- Redo: Press `Ctrl + R` in command mode to redo an undone action.
+- Search: Type `/` followed by the text to search for and press `Enter`. Navigate matches with `n` (next) or `N` (previous).
