@@ -1446,3 +1446,5 @@ This section demonstrates using terminal-based text editors, focusing on Vim. Vi
 - Undo: Press `u` in command mode to undo the last action.
 - Redo: Press `Ctrl + R` in command mode to redo an undone action.
 - Search: Type `/` followed by the text to search for and press `Enter`. Navigate matches with `n` (next) or `N` (previous).
+
+## 17. Customize the command terminal (in progress...)
